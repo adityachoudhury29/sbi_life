@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SBI Life Insurance - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        .hero-container img {
+            width: 60px;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            color: #4ecdc4;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #a2d2ff;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-recommend {
+            background: linear-gradient(to right, #4ecdc4, #45b7d1);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.5);
+        }
+
+        .btn-chat {
+            background: transparent;
+            border: 2px solid #4ecdc4;
+            color: #4ecdc4;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: #a2d2ff;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (min-width: 600px) {
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-container">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="SBI Logo" />
+        <h1 class="hero-title">SBI Life Insurance</h1>
+        <p class="hero-subtitle">Secure your future with the best policy recommendations and 24/7 support.</p>
+        <div class="hero-buttons">
+            <a href="/pcr" class="btn btn-recommend">Recommend a Policy</a>
+            <a href="/chatbot" class="btn btn-chat">Talk to Our Chatbot</a>
+        </div>
+    </div>
+    <div class="footer">© 2025 SBI Life Insurance. All rights reserved.</div>
+</body>
+</html>
