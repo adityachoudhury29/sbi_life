@@ -179,7 +179,7 @@ def chat():
         f"I'm Salahkar, your insurance advisor from SBI Life Insurance. "
         f"The recommended policy is {prediction}. "
         f"For your message: '{user_message}', provide a short response in 2-3 bullet points (use dashes '-') if possible. "
-        f"Do not mention policies other than {prediction}. Keep it concise and end with 'How can I assist you further?'"
+        f"Do not mention policies other than {prediction}. Keep it concise."
     )
 
     response = gemini_model.generate_content(

@@ -1,8 +1,9 @@
 flask
-google
+google-generativeai
 joblib
 numpy
 pandas
 scikit-learn
 matplotlib
 seaborn
+xgboost
