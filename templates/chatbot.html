@@ -1,130 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salahkar.ai - Insurance Advisor</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/style2.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salahkar.ai - Insurance Advisor</title>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #422e87;
+      --primary-light: #5f4aa5;
+      --secondary: #0097a7;
+      --accent: #e0e7ff;
+      --background: #f7f9fc;
+      --card-bg: #ffffff;
+      --text: #333344;
+      --text-light: #666677;
+      --border: #e0e0e8;
+      --success: #4caf50;
+      --error: #f44336;
+    }
+
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    ul { list-style: none; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
+    header {
+      background-color: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      position: fixed; width: 100%; top: 0; z-index: 100;
+    }
+    .header-container {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 15px 20px;
+    }
+    .logo h1 { font-size: 24px; font-weight: 700; color: #004080; }
+    .logo span { color: #ff6b35; }
+    nav ul { display: flex; gap: 30px; }
+    nav ul li a {
+      color: #555; font-weight: 500; font-size: 16px;
+      position: relative; transition: color 0.3s ease;
+    }
+    nav ul li a:hover { color: #004080; }
+    nav ul li a::after {
+      content: ''; position: absolute; width: 0; height: 2px;
+      background-color: #004080; bottom: -5px; left: 0;
+      transition: width 0.3s ease;
+    }
+    nav ul li a:hover::after { width: 100%; }
+    .auth-buttons { display: flex; gap: 15px; }
+    .btn {
+      padding: 10px 20px; border-radius: 6px; font-weight: 500;
+      font-size: 14px; transition: all 0.3s ease; cursor: pointer;
+    }
+    .btn-outline {
+      border: 1.5px solid #004080; color: #004080; background: transparent;
+    }
+    .btn-outline:hover {
+      background-color: rgba(0,64,128,0.05);
+    }
+    .btn-primary {
+      background-color: #004080; color: white; border: 1.5px solid #004080;
+    }
+    .btn-primary:hover { background-color: #003366; }
+
+    /* Chat Container */
+    .chat-container {
+      max-width: 1000px; height: 75vh;
+      margin: 120px auto 40px; background-color: #fff;
+      border-radius: 12px; box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+      display: flex; flex-direction: column; overflow: hidden;
+      position: relative;
+    }
+    .chat-messages {
+      flex: 1; overflow-y: auto; padding: 30px 25px;
+      display: flex; flex-direction: column; gap: 20px;
+      background-color: #f9fafc;
+    }
+
+    /* Messages */
+    .message {
+      display: flex; max-width: 70%; align-items: flex-start;
+      animation: fadeIn 0.3s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .message.ai { margin-right: auto; }
+    .message.user {
+      margin-left: auto; flex-direction: row-reverse;
+    }
+    .message-avatar,
+    .user-icon {
+      width: 42px; height: 42px; border-radius: 50%;
+      flex-shrink: 0; object-fit: cover;
+    }
+    .message-avatar { margin-right: 15px; border: 2px solid #e1e6f0; }
+    .user-icon {
+      background-color: #004080; color: white;
+      display: flex; justify-content: center; align-items: center;
+      margin-left: 15px; font-size: 18px;
+    }
+    .message-content {
+      padding: 15px 20px; border-radius: 18px;
+      font-size: 15px; line-height: 1.6; position: relative;
+      /* preserve newlines and wrapping */
+      white-space: pre-wrap;
+    }
+    .message.ai .message-content {
+      background-color: #f0f4ff; color: #333;
+      border-top-left-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .message.user .message-content {
+      background-color: #004080; color: white;
+      border-top-right-radius: 4px;
+      box-shadow: 0 2px 10px rgba(0,64,128,0.15);
+    }
+    .typing::after {
+      content: ''; display: inline-block; width: 4px; height: 15px;
+      margin-left: 5px; background-color: currentColor;
+      animation: blink 1s infinite; vertical-align: middle;
+    }
+    @keyframes blink {
+      0%,100% { opacity: 0; }
+      50%     { opacity: 1; }
+    }
+
+    /* Input */
+    .chat-form {
+      padding: 20px; background-color: #fff;
+      border-top: 1px solid #eaedf3;
+    }
+    .input-container {
+      display: flex; align-items: center;
+      background-color: #f5f7fa; border: 1.5px solid #e1e6f0;
+      border-radius: 50px; padding: 5px;
+      transition: all 0.3s ease;
+    }
+    .input-container:focus-within {
+      border-color: #004080;
+      box-shadow: 0 0 0 3px rgba(0,64,128,0.1);
+    }
+    #chatInput {
+      flex: 1; border: none; padding: 12px 20px;
+      font-size: 15px; background: transparent; outline: none;
+      color: #333;
+    }
+    #chatInput::placeholder { color: #aab7c4; }
+    .chat-submit-btn {
+      background-color: #004080; color: white; border: none;
+      width: 45px; height: 45px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.3s ease;
+    }
+    .chat-submit-btn:hover {
+      background-color: #003366; transform: scale(1.05);
+    }
+    .chat-submit-btn i { font-size: 16px; }
+
+    /* Scrollbar */
+    .chat-messages::-webkit-scrollbar { width: 6px; }
+    .chat-messages::-webkit-scrollbar-track {
+      background: #f1f1f1; border-radius: 10px;
+    }
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: #c9d4e6; border-radius: 10px;
+    }
+    .chat-messages::-webkit-scrollbar-thumb:hover {
+      background: #aab7c4;
+    }
+
+    /* Responsive tweaks omitted for brevity... */
+  </style>
+
+  <!-- pass the initial response into JS -->
+  <script>
+    const initialText = {{ initial_response|tojson }};
+  </script>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <img src="{{ url_for('static', filename='logo.png') }}" alt="SBI Logo" class="nav-logo">
-                <span>SBI Life Insurance</span>
-            </div>
-            <ul class="nav-links">
-                <li class="nav-item">
-                    <a href="/pcr">Policy Recommendation</a>
-                </li>
-                <li class="nav-item active">
-                    <a href="/chatbot">Chat with Advisor</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/">Home</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Chat Container -->
-    <div class="chat-container">
-        <div class="chat-messages" id="chatMessages">
-            <!-- Messages will be added dynamically -->
-        </div>
-
-        <form id="chatForm" class="chat-form">
-            <div class="input-container">
-                <input type="text" id="chatInput" placeholder="Type your insurance query here...">
-                <button type="submit" class="chat-submit-btn">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
-        </form>
+  <!-- Navigation Bar -->
+  <header>
+    <div class="container header-container">
+      <div class="logo"><h1>SBI <span>Life</span></h1></div>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <a href="#" class="btn btn-outline">Login</a>
+        <a href="#" class="btn btn-primary">Register</a>
+      </div>
     </div>
+  </header>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const chatMessages = document.getElementById('chatMessages');
-            const initialMessage = document.createElement('div');
-            initialMessage.className = 'message ai';
-            initialMessage.innerHTML = `
-                <img src="{{ url_for('static', filename='salesman_avatar.png') }}" 
-                     class="message-avatar" 
-                     alt="Advisor">
-                <div class="message-content typing" data-text="{{ initial_response }}"></div>`;
-            chatMessages.appendChild(initialMessage);
-            
-            const typingElement = initialMessage.querySelector('.typing');
-            let text = typingElement.dataset.text;
-            let i = 0;
-            const speed = 15;
-            
-            function typeInitial() {
-                if (i < text.length) {
-                    typingElement.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeInitial, speed);
-                }
+  <!-- Chat Container -->
+  <div class="chat-container">
+    <div class="chat-messages" id="chatMessages">
+      <!-- AI initial message will be injected here -->
+    </div>
+    <form id="chatForm" class="chat-form">
+      <div class="input-container">
+        <input type="text" id="chatInput" placeholder="Type your insurance query here…" />
+        <button type="submit" class="chat-submit-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const chatMessages = document.getElementById('chatMessages');
+      // Render initial AI message
+      const initialMessage = document.createElement('div');
+      initialMessage.className = 'message ai';
+      initialMessage.innerHTML = `
+        <img src="{{ url_for('static', filename='salesman_avatar.png') }}"
+             class="message-avatar" alt="Advisor"/>
+        <div class="message-content typing"></div>`;
+      chatMessages.appendChild(initialMessage);
+
+      // Type it out
+      const typingEl = initialMessage.querySelector('.typing');
+      let idx = 0, speed = 15;
+      function typeInitial() {
+        if (idx < initialText.length) {
+          typingEl.textContent += initialText.charAt(idx++);
+          setTimeout(typeInitial, speed);
+        }
+      }
+      setTimeout(typeInitial, 500);
+    });
+
+    // Handle user submissions & AI follow-ups
+    document.getElementById('chatForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const input = document.getElementById('chatInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+      const chatMessages = document.getElementById('chatMessages');
+
+      // user message
+      chatMessages.innerHTML += `
+        <div class="message user">
+          <div class="message-content">${msg}</div>
+          <div class="user-icon"><i class="fas fa-user"></i></div>
+        </div>`;
+      input.value = '';
+
+      // placeholder AI
+      const aiDiv = document.createElement('div');
+      aiDiv.className = 'message ai';
+      aiDiv.innerHTML = `
+        <img src="{{ url_for('static', filename='salesman_avatar.png') }}"
+             class="message-avatar" alt="Advisor"/>
+        <div class="message-content typing">Thinking…</div>`;
+      chatMessages.appendChild(aiDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      // fetch real response
+      setTimeout(async () => {
+        try {
+          const res = await fetch('/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `message=${encodeURIComponent(msg)}`
+          });
+          const { response } = await res.json();
+          const typingEl = aiDiv.querySelector('.typing');
+          typingEl.textContent = '';
+          let i = 0, sp = 15;
+          function typeWriter() {
+            if (i < response.length) {
+              typingEl.textContent += response.charAt(i++);
+              setTimeout(typeWriter, sp);
             }
-            setTimeout(typeInitial, 1000);
-        });
-
-        document.getElementById('chatForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const message = document.getElementById('chatInput').value;
-            if (message) {
-                const chatMessages = document.getElementById('chatMessages');
-                chatMessages.innerHTML += `
-                    <div class="message user">
-                        <div class="message-content">${message}</div>
-                        <div class="user-icon"><i class="fas fa-user"></i></div>
-                    </div>`;
-                
-                const aiMessage = document.createElement('div');
-                aiMessage.className = 'message ai';
-                aiMessage.innerHTML = `
-                    <img src="{{ url_for('static', filename='salesman_avatar.png') }}" 
-                         class="message-avatar" 
-                         alt="Advisor">
-                    <div class="message-content typing" data-text="Thinking..."></div>`;
-                
-                chatMessages.appendChild(aiMessage);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                document.getElementById('chatInput').value = '';
-
-                setTimeout(async () => {
-                    try {
-                        const response = await fetch('/chat', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                            body: `message=${encodeURIComponent(message)}`
-                        });
-                        const result = await response.json();
-                        
-                        aiMessage.querySelector('.typing').dataset.text = result.response;
-                        const typingElement = aiMessage.querySelector('.typing');
-                        let text = typingElement.dataset.text;
-                        let i = 0;
-                        const speed = 15;
-                        
-                        function typeWriter() {
-                            if (i < text.length) {
-                                typingElement.textContent = text.substring(0, i+1);
-                                i++;
-                                setTimeout(typeWriter, speed);
-                            }
-                        }
-                        typeWriter();
-                    } catch (error) {
-                        aiMessage.querySelector('.typing').textContent = "Error: Could not generate response.";
-                    }
-                }, 1500);
-            }
-        });
-    </script>
+          }
+          typeWriter();
+        } catch (err) {
+          aiDiv.querySelector('.typing').textContent =
+            'Error: Could not generate response.';
+        }
+      }, 1500);
+    });
+  </script>
 </body>
 </html>

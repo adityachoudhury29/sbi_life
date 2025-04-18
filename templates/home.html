@@ -1,124 +1,1004 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>SBI Life Insurance - Home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBI Life Insurance - Secure Your Future</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
+        :root {
+            --primary: #003f7d;
+            --secondary: #e74c3c;
+            --accent: #f39c12;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f7;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+            margin-right: 10px;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #00315f;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
-            color: #ffffff;
-            min-height: 100vh;
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #003f7d 0%, #001f3f 100%);
+            color: white;
+            display: flex;
+            align-items: center;      /* vertical centering */
+            justify-content: center;  /* horizontal centering */
+            text-align: center;       /* center the text */
+            padding: 80px 0;          /* you can tweak this if you want more/less top‑bottom space */
+        }
+          
+        /* Stack your content in a column */
+            .hero-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            position: relative;
+            z-index: 1;
         }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://via.placeholder.com/1920x1080') no-repeat center center/cover;
+            opacity: 0.1;
+        }
+        
 
-        .hero-container {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        
+        .hero-text {
             max-width: 600px;
-            width: 90%;
-            text-align: center;
-            animation: fadeIn 1.2s ease-in-out;
+        }
+        
+        .hero-text h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 15px;
+        }
+        .hero-cta {
+            /* make the CTA container span the full width of its parent */
+            width: 100%;
+            /* center its children horizontally */
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            /* optional spacing above the buttons */
+            margin-top: 1rem;
+          }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #c0392b;
         }
 
-        .hero-container img {
-            width: 60px;
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                margin-bottom: 15px;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h3 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            background-color: rgba(0, 63, 125, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .feature-card h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
             margin-bottom: 20px;
         }
-
-        .hero-title {
-            font-size: 2.2rem;
-            color: #4ecdc4;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: #a2d2ff;
-            margin-bottom: 30px;
-        }
-
-        .hero-buttons {
+        
+        .feature-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
             display: flex;
-            flex-direction: column;
-            gap: 15px;
             align-items: center;
         }
-
-        .btn {
-            padding: 12px 24px;
+        
+        .feature-link i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: #f5f5f7;
+        }
+        
+        .product-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 15px 25px;
+            background: none;
             border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--gray);
             cursor: pointer;
-            transition: all 0.3s ease;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .product-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-content {
+            padding: 20px;
+        }
+        
+        .product-content h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .product-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            color: var(--accent);
+        }
+        
+        .product-rating span {
+            margin-left: 5px;
+            color: var(--gray);
+        }
+        
+        .product-pricing {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            font-size: 120px;
+            color: rgba(0, 63, 125, 0.1);
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            font-size: 18px;
+            color: var(--dark);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h5 {
+            font-size: 18px;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        /* Call to Action */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #003f7d 0%, #001f3f 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h3 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .btn-white {
+            background-color: white;
+            color: var(--primary);
+            border: none;
+        }
+        
+        .btn-white:hover {
+            background-color: #f1f1f1;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #001f3f;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            display: inline-block;
+            transition: color 0.3s;
         }
-
-        .btn-recommend {
-            background: linear-gradient(to right, #4ecdc4, #45b7d1);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.5);
+        
+        .footer-column ul li a:hover {
+            color: white;
         }
-
-        .btn-chat {
-            background: transparent;
-            border: 2px solid #4ecdc4;
-            color: #4ecdc4;
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        .btn:hover {
-            transform: translateY(-2px);
+        
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
         }
-
-        .footer {
-            margin-top: 40px;
-            font-size: 0.85rem;
-            color: #a2d2ff;
-            opacity: 0.8;
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
         }
-
-        @media (min-width: 600px) {
-            .hero-buttons {
-                flex-direction: row;
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Quick Access */
+        .quick-access {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+        
+        .quick-access-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .quick-access-button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                margin-bottom: 40px;
+            }
+            
+            .hero-image {
+                width: 60%;
+            }
+            
+            .hero-cta {
                 justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                margin-bottom: 15px;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .section-header h3 {
+                font-size: 28px;
+            }
+            
+            .feature-card {
+                padding: 20px;
+            }
+            
+            .cta-content h3 {
+                font-size: 28px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="hero-container">
-        <img src="{{ url_for('static', filename='logo.png') }}" alt="SBI Logo" />
-        <h1 class="hero-title">SBI Life Insurance</h1>
-        <p class="hero-subtitle">Secure your future with the best policy recommendations and 24/7 support.</p>
-        <div class="hero-buttons">
-            <a href="/pcr" class="btn btn-recommend">Recommend a Policy</a>
-            <a href="/chatbot" class="btn btn-chat">Talk to Our Chatbot</a>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>SBI <span>Life</span></h1>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Login</a>
+                <a href="#" class="btn btn-primary">Register</a>
+            </div>
         </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h2>Secure Your Future with Confidence</h2>
+                <p>Comprehensive life insurance solutions tailored to meet your financial goals and protect what matters most to you.</p>
+                <div class="hero-cta">
+                    <a href="/pcr" class="btn btn-secondary">Get a Quote</a>
+                    <a href="#" class="btn btn-outline" style="border-color: white; color: white;">Learn More</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h3>Why Choose SBI Life</h3>
+                <p>Discover the key benefits that make us the preferred choice for millions of Indians</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Financial Security</h4>
+                    <p>Protect your family's financial future with our comprehensive coverage options that ensure peace of mind.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Wealth Creation</h4>
+                    <p>Build and grow your wealth with our investment-linked insurance plans designed for long-term financial growth.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h4>Health Protection</h4>
+                    <p>Safeguard against medical emergencies with our health insurance solutions that cover critical illnesses.</p>
+                    <a href="#" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container">
+            <div class="section-header">
+                <h3>Our Insurance Solutions</h3>
+                <p>Tailored plans to meet your unique needs at every stage of life</p>
+            </div>
+            
+            <div class="product-tabs">
+                <button class="tab-btn active">Life Insurance</button>
+                <button class="tab-btn">Health Insurance</button>
+                <button class="tab-btn">Retirement Plans</button>
+                <button class="tab-btn">Child Plans</button>
+            </div>
+            
+            <div class="product-cards">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/static/termlife.png" alt="Term Life Insurance">
+                    </div>
+                    <div class="product-content">
+                        <h4>Term Life Insurance</h4>
+                        <p>Pure protection plan offering high coverage at affordable premiums for a specified term.</p>
+                        <div class="product-meta">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(4.5)</span>
+                            </div>
+                            <div class="product-pricing">
+                                Starting at ₹599/month
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/static/endowment.png" alt="Endowment Plan">
+                    </div>
+                    <div class="product-content">
+                        <h4>Endowment Plan</h4>
+                        <p>Dual benefit of insurance protection and savings with guaranteed returns.</p>
+                        <div class="product-meta">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span>(4.9)</span>
+                            </div>
+                            <div class="product-pricing">
+                                Starting at ₹1,999/month
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/static/ullip.png" alt="ULIP">
+                    </div>
+                    <div class="product-content">
+                        <h4>Unit Linked Insurance Plan</h4>
+                        <p>Combines insurance protection with investment opportunities in equity and debt markets.</p>
+                        <div class="product-meta">
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span>(4.0)</span>
+                            </div>
+                            <div class="product-pricing">
+                                Starting at ₹2,499/month
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h3>Customer Stories</h3>
+                <p>See what our policyholders have to say about their experience with SBI Life</p>
+            </div>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">SBI Life's term insurance plan gave my family the financial security we needed. The process was seamless, and the support team was extremely helpful throughout.</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="/static/man.png" alt="Rajesh Kumar">
+                        </div>
+                        <div class="author-info">
+                            <h5>Rajesh Kumar</h5>
+                            <p>Term Life Policyholder</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h3>Ready to Secure Your Future?</h3>
+                <p>Take the first step towards financial security. Our expert advisors are ready to help you find the perfect plan.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-white">Schedule a Call</a>
+                    <a href="#" class="btn btn-secondary">Explore Plans</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#">Term Life Insurance</a></li>
+                        <li><a href="#">Endowment Plans</a></li>
+                        <li><a href="#">ULIPs</a></li>
+                        <li><a href="#">Health Insurance</a></li>
+                        <li><a href="#">Retirement Plans</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Premium Payment</a></li>
+                        <li><a href="#">Policy Renewal</a></li>
+                        <li><a href="#">Claims Process</a></li>
+                        <li><a href="#">Fund Value</a></li>
+                        <li><a href="#">Tax Benefits</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Grievance Redressal</a></li>
+                        <li><a href="#">Branch Locator</a></li>
+                        <li><a href="#">Downloads</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                        <li><a href="#">Insurance Regulatory</a></li>
+                        <li><a href="#">Fraudulent Activities</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; SBI Life Hack-AI-Thon : Team Losers?.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Quick Access -->
+    <div class="quick-access">
+        <a href="/chatbot" class="quick-access-button">
+            <i class="fas fa-headset"></i>
+        </a>
     </div>
-    <div class="footer">© 2025 SBI Life Insurance. All rights reserved.</div>
 </body>
 </html>
