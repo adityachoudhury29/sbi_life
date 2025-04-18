@@ -137,7 +137,7 @@ def form():
             user_name = customer_data['Name']
             prompt = (
               f"There is a user named {user_name}. SBI Life’s model predicts that the best policy for them is the *{prediction_label}*.\n\n"
-                "You are Salahkar, SBI Life’s AI insurance advisor. In 3–5 bullet points:\n"
+                "You are Life-Bot, SBI Life’s AI insurance advisor. In 3–5 bullet points:\n"
                 "- Summarize the user’s profile and key needs.\n"
                 "- Explain why the *{prediction_label}* policy is a perfect fit for them.\n"
                 "- Highlight 3–4 concrete benefits of this policy.\n\n"
@@ -166,7 +166,7 @@ def form():
 def chatbot():
     prediction = session.get('prediction', 'No recommendation available.')
     customer_data = session.get('customer_data', {})
-    initial_response = session.get('initial_response', "Welcome! I'm Salahkar, your insurance advisor from SBI Life Insurance. How can I assist you?")
+    initial_response = session.get('initial_response', "Welcome! I'm Life-Bot, your insurance advisor from SBI Life Insurance. How can I assist you?")
     return render_template('chatbot.html', prediction=prediction, customer_data=customer_data, initial_response=initial_response)
 
 @app.route('/chat', methods=['POST'])
@@ -176,7 +176,7 @@ def chat():
 
     # Follow-up response without name, in point-wise format
     prompt = (
-        f"I'm Salahkar, your insurance advisor from SBI Life Insurance. "
+        f"I'm Life-Bot, your insurance advisor from SBI Life Insurance. "
         f"The recommended policy is {prediction}. "
         f"For your message: '{user_message}', provide a short response in 2-3 bullet points (use dashes '-') if possible. "
         f"Do not mention policies other than {prediction}. Keep it concise."
